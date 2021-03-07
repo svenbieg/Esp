@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MemoryHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Tcp\PacketBuffer.cpp">
+      <Filter>Network\Tcp</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ResourceHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Ota\OtaUpdate.cpp">
+      <Filter>Network\Ota</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Dns\DnsServer.cpp">
+      <Filter>Network\Dns</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TimeHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Devices\I2C\I2CBus.cpp">
+      <Filter>Devices\I2C</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Devices\Serial\SerialPort.cpp">
+      <Filter>Devices\Serial</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Tcp\TcpClient.cpp">
+      <Filter>Network\Tcp</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Tcp\TcpConnection.cpp">
+      <Filter>Network\Tcp</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Tcp\TcpServer.cpp">
+      <Filter>Network\Tcp</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Udp\UdpServer.cpp">
+      <Filter>Network\Udp</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Devices\Gpio\GpioHelper.cpp">
+      <Filter>Devices\Gpio</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\WiFi\WiFiConnection.cpp">
+      <Filter>Network\WiFi</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Smtp\SmtpClient.cpp">
+      <Filter>Network\Smtp</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CriticalSection.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Devices\Gpio\InputPin.cpp">
+      <Filter>Devices\Gpio</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Dns\DnsClient.cpp">
+      <Filter>Network\Dns</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Devices\ClockHelper.cpp">
+      <Filter>Devices</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Devices\Timer.cpp">
+      <Filter>Devices</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Storage\AppDataHelper.cpp">
+      <Filter>Storage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Devices\OneWireHelper.cpp">
+      <Filter>Devices</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TaskHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Udp\UdpClient.cpp">
+      <Filter>Network\Udp</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Web\Templates\NetworkParagraph.cpp">
+      <Filter>Web\Templates</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Web\Templates\SystemParagraph.cpp">
+      <Filter>Web\Templates</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Devices\Storage\FlashDevice.cpp">
+      <Filter>Devices\Storage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Runtime\Application.cpp">
+      <Filter>Runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Devices\Storage\BlockDevice.cpp">
+      <Filter>Devices\Storage</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MemoryHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Devices\InterruptLock.h">
+      <Filter>Devices</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Tcp\PacketBuffer.h">
+      <Filter>Network\Tcp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ResourceHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Ota\OtaUpdate.h">
+      <Filter>Network\Ota</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Dns\DnsServer.h">
+      <Filter>Network\Dns</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TimeHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)IntelliSense.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Devices\I2C\I2CBus.h">
+      <Filter>Devices\I2C</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Devices\Serial\SerialPort.h">
+      <Filter>Devices\Serial</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Tcp\TcpClient.h">
+      <Filter>Network\Tcp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Tcp\TcpConnection.h">
+      <Filter>Network\Tcp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Tcp\TcpServer.h">
+      <Filter>Network\Tcp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Platform.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Udp\UdpServer.h">
+      <Filter>Network\Udp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Devices\Gpio\GpioHelper.h">
+      <Filter>Devices\Gpio</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\WiFi\WiFiConnection.h">
+      <Filter>Network\WiFi</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\WiFi\WiFiEvent.h">
+      <Filter>Network\WiFi</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Smtp\SmtpClient.h">
+      <Filter>Network\Smtp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Dns\DnsHelper.h">
+      <Filter>Network\Dns</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CriticalSection.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Devices\Gpio\InputPin.h">
+      <Filter>Devices\Gpio</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Dns\DnsClient.h">
+      <Filter>Network\Dns</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Devices\ClockHelper.h">
+      <Filter>Devices</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Devices\Timer.h">
+      <Filter>Devices</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TypeHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Storage\AppDataHelper.h">
+      <Filter>Storage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Devices\OneWireHelper.h">
+      <Filter>Devices</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TaskHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Udp\UdpClient.h">
+      <Filter>Network\Udp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Web\Templates\NetworkParagraph.h">
+      <Filter>Web\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Web\Templates\SystemParagraph.h">
+      <Filter>Web\Templates</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Devices\Storage\FlashDevice.h">
+      <Filter>Devices\Storage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Runtime\Application.h">
+      <Filter>Runtime</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Devices">
+      <UniqueIdentifier>{c77a6536-ec44-418c-ae51-24de90203e2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{60d5f9a6-f8c0-4cf2-9550-4c9cdf13b36a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Tcp">
+      <UniqueIdentifier>{d9462a9e-27bd-45e5-b2cc-9ad3a22149e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Storage">
+      <UniqueIdentifier>{fa5cc4bb-c404-410a-8ddc-f3b5b854f85e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Ota">
+      <UniqueIdentifier>{9586a8b8-c51c-46d9-8e3d-fc0601c38541}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Dns">
+      <UniqueIdentifier>{1c0ee66c-fbff-43dc-986c-17fc70ae7282}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Configuration">
+      <UniqueIdentifier>{a6151991-8bac-4fd3-afeb-140d3f108ca4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Devices\I2C">
+      <UniqueIdentifier>{b8ac3312-cc7c-4172-a27d-da3ecc04493d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Devices\Serial">
+      <UniqueIdentifier>{feb7fe7c-bf7f-4562-b6cb-e485d5567e4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Udp">
+      <UniqueIdentifier>{53a8ad28-22fb-4a76-904a-dd8b0b8737e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Devices\Gpio">
+      <UniqueIdentifier>{7554ac56-3ce9-4063-a723-45365894eec3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\WiFi">
+      <UniqueIdentifier>{aa59b3cc-9b9c-4c21-acd7-818ae58fa4fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Smtp">
+      <UniqueIdentifier>{0bb9d0b2-6213-44b4-a588-23aec6781d7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Web">
+      <UniqueIdentifier>{8df5d534-a6b6-4ade-a87f-dc775e6409b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Web\Templates">
+      <UniqueIdentifier>{15fbd786-05ec-41b3-a6ec-3d4ce6adddcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Devices\Storage">
+      <UniqueIdentifier>{2aa5ed5f-80f2-474f-a69d-471b1f6ef65f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Runtime">
+      <UniqueIdentifier>{f2329464-45ab-4768-94e0-cbcfe3f3d908}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Configuration\Default.props">
+      <Filter>Configuration</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Configuration\Default.targets">
+      <Filter>Configuration</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Configuration\partitions.csv">
+      <Filter>Configuration</Filter>
+    </None>
+  </ItemGroup>
+</Project>

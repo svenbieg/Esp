@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{EAD4AF2D-7C33-4A45-A683-D13C8AB13590}</ItemsProjectGuid>
+    <ItemsSccProjectName>$/Shared/Esp</ItemsSccProjectName>
+    <ItemsSccAuxPath>https://svenbieg.visualstudio.com</ItemsSccAuxPath>
+    <ItemsSccLocalPath>.</ItemsSccLocalPath>
+    <ItemsSccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</ItemsSccProvider>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CriticalSection.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Devices\ClockHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Devices\Gpio\GpioHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Devices\Gpio\InputPin.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Devices\I2C\I2CBus.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Devices\InterruptLock.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Devices\OneWireHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Devices\Serial\SerialPort.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Devices\Storage\FlashDevice.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Devices\Timer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)IntelliSense.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MemoryHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Dns\DnsClient.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Dns\DnsHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Dns\DnsServer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Ota\OtaUpdate.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Smtp\SmtpClient.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Tcp\PacketBuffer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Tcp\TcpClient.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Tcp\TcpConnection.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Tcp\TcpServer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Udp\UdpClient.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Udp\UdpServer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\WiFi\WiFiConnection.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\WiFi\WiFiEvent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Platform.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ResourceHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Runtime\Application.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Storage\AppDataHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TaskHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TimeHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TypeHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Web\Templates\NetworkParagraph.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Web\Templates\SystemParagraph.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CriticalSection.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Devices\ClockHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Devices\Gpio\GpioHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Devices\Gpio\InputPin.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Devices\I2C\I2CBus.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Devices\OneWireHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Devices\Serial\SerialPort.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Devices\Storage\BlockDevice.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Devices\Storage\FlashDevice.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Devices\Timer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MemoryHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Dns\DnsClient.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Dns\DnsServer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Ota\OtaUpdate.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Smtp\SmtpClient.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Tcp\PacketBuffer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Tcp\TcpClient.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Tcp\TcpConnection.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Tcp\TcpServer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Udp\UdpClient.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Udp\UdpServer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\WiFi\WiFiConnection.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ResourceHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Runtime\Application.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Storage\AppDataHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TaskHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TimeHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Web\Templates\NetworkParagraph.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Web\Templates\SystemParagraph.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Configuration\Default.props" />
+    <None Include="$(MSBuildThisFileDirectory)Configuration\Default.targets" />
+    <None Include="$(MSBuildThisFileDirectory)Configuration\partitions.csv" />
+  </ItemGroup>
+</Project>

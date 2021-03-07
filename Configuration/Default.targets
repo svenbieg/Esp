@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(SolutionDir)IoT\Configuration\Default.targets" />
+  <Target Name="IdfUpdate" Condition="!Exists('$(SolutionDir)CMakeLists.txt')" DependsOnTargets="IdfInstall">
+    <Message Text="Updating Esp-Idf..." Importance="High" />
+    <ItemGroup>
+      <UpdateLines Include="%22$(GitExe)%22 pull" />
+      <UpdateLines Include="%22$(GitExe)%22 submodule update -i -r" />
+    </ItemGroup>
+    <Exec Command="@(UpdateLines->'%(Identity)&amp;')" WorkingDirectory="$(IdfPath)" />
+  </Target>
+  <Target Name="EspBuild" DependsOnTargets="IdfToolsInstall">
+    <PropertyGroup>
+      <SolutionDir>$([System.IO.Path]::GetFullPath('$(SolutionDir)'))</SolutionDir>
+    </PropertyGroup>
+    <ItemGroup>
+      <CMakeIncludeList Include="%(ClCompile.AdditionalIncludeDirectories)" />
+      <ClCompile Remove="$(SolutionDir)\Esp\Components\**\*.*" />
+      <ClCompile Remove="$(SolutionDir)\$(IdfExtraComponentDir)\**\*.*" />
+    </ItemGroup>
+    <RemoveDuplicates Inputs="@(CMakeIncludeList)">
+      <Output TaskParameter="Filtered" ItemName="CMakeIncludeListFiltered" />
+    </RemoveDuplicates>
+    <PropertyGroup>
+      <IncludeDirs>@(CMakeIncludeListFiltered)</IncludeDirs>
+      <IncludeDirs>$(IncludeDirs.Replace('$(SolutionDir)', '../'))</IncludeDirs>
+      <IncludeDirs>$(IncludeDirs.Replace('\', '/'))</IncludeDirs>
+      <SourceFiles>@(ClCompile->'%(FullPath)')</SourceFiles>
+      <SourceFiles>$(SourceFiles.Replace('$(SolutionDir)', '../'))</SourceFiles>
+      <SourceFiles>$(SourceFiles.Replace('\', '/'))</SourceFiles>
+    </PropertyGroup>
+    <ItemGroup>
+      <IncludeList Include="$(IncludeDirs.Split(';'))" />
+      <SourceList Include="$(SourceFiles.Split(';'))" />
+    </ItemGroup>
+    <PropertyGroup>
+      <IncludeArg>@(IncludeList->'%(Identity)', '%0D%0A    ')</IncludeArg>
+      <SourceArg>@(SourceList->'%22%(Identity)%22', '%0D%0A    ')</SourceArg>
+    </PropertyGroup>
+    <ItemGroup>
+      <SolutionCMakeLines Include="cmake_minimum_required(VERSION 3.5)" />
+      <SolutionCMakeLines Include="set(EXTRA_COMPONENT_DIRS %22Esp/Components%22)" />
+      <SolutionCMakeLines Include="set(EXTRA_COMPONENT_DIRS ${EXTRA_COMPONENT_DIRS} %22$(IdfExtraComponentDir.Replace('\', '/'))%22)" />
+      <SolutionCMakeLines Include="set(COMPONENTS %22$(IdfComponents)%22)" />
+      <SolutionCMakeLines Include="set(PROJECT_VER %22$(TimeStamp)%22)" />
+      <SolutionCMakeLines Include="include($ENV{IDF_PATH}/tools/cmake/project.cmake)" />
+      <SolutionCMakeLines Include="project($(ProjectName))" />
+    </ItemGroup>
+    <WriteLinesToFile File="$(SolutionDir)CMakeLists.txt" Lines="@(SolutionCMakeLines)" Overwrite="true" />
+    <PropertyGroup>
+      <PreprocessorArg>-D@(PreprocessorList->'%(Identity)', ' -D')</PreprocessorArg>
+    </PropertyGroup>
+    <ItemGroup>
+      <ProjectCMakeLines Include="set(include_dirs%0D%0A    $(IncludeArg)%0D%0A)%0D%0A" />
+      <ProjectCMakeLines Include="set(src_files%0D%0A    $(SourceArg))%0D%0A" />
+      <ProjectCMakeLines Include="idf_component_register(SRCS %22${src_files}%22 INCLUDE_DIRS %22${include_dirs}%22)" />
+      <ProjectCMakeLines Include="set(CMAKE_CXX_FLAGS %22${CMAKE_CXX_FLAGS} $(PreprocessorArg) -Wno-invalid-offsetof%22)" />
+    </ItemGroup>
+    <WriteLinesToFile File="$(SolutionDir)main\CMakeLists.txt" Lines="@(ProjectCMakeLines)" Overwrite="true" />
+    <Copy DestinationFolder="$(SolutionDir)" SourceFiles="$(SolutionDir)$(TargetPlatform)\sdkconfig" />
+    <ItemGroup>
+      <BuildLines Include="@echo off" />
+      <BuildLines Include="set IDF_PATH=$(IdfPath)" />
+      <BuildLines Include="set PATH=%%PATH%%%3B$(PythonPath)%3B$(IdfPyPath)%3B$(CompilerPath)bin%3B$(CMakePath)bin%3B$(NinjaPath)%3B$(MConfPath)" />
+      <BuildLines Include="idf.py.exe build" />
+    </ItemGroup>
+    <Exec Command="@(BuildLines->'%(Identity)&amp;')" WorkingDirectory="$(SolutionDir)" />
+  </Target>
+  <Target Name="EspFlash" DependsOnTargets="EspBuild;CheckComPort">
+    <ItemGroup>
+      <FlashLines Include="@echo off" />
+      <FlashLines Include="set IDF_PATH=$(IdfPath)" />
+      <FlashLines Include="set PATH=%%PATH%%%3B$(PythonPath)%3B$(IdfPyPath)%3B$(CompilerPath)bin%3B$(CMakePath)bin%3B$(NinjaPath)%3B$(MConfPath)" />
+      <FlashLines Include="idf.py.exe -p $(ComPort) flash monitor" />
+    </ItemGroup>
+    <Exec Command="@(FlashLines->'%(Identity)&amp;')" Condition="'$(ComPortPresent)'=='true'" WorkingDirectory="$(SolutionDir)" />
+  </Target>
+  <Target Name="EspClean">
+    <ItemGroup>
+      <CleanLines Include="rd /s /q build" />
+      <CleanLines Include="rd /s /q main" />
+      <CleanLines Include="del CMakeLists.txt" />
+      <CleanLines Include="del sdkconfig" />
+    </ItemGroup>
+    <Exec Command="@(CleanLines->'%(Identity)&amp;')" WorkingDirectory="$(SolutionDir)" />
+  </Target>
+</Project>

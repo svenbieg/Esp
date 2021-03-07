@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(SolutionDir)Common\Configuration\Default.props" />
+  <PropertyGroup>
+    <!-- Directories -->
+    <EspPath>$(HomePath).espressif\</EspPath>
+    <IdfToolsPath>$(HomePath).espressif\tools\</IdfToolsPath>
+    <CMakePath>$(IdfToolsPath)cmake\3.13.4\</CMakePath>
+    <IdfPyPath>$(IdfToolsPath)idf-exe\1.0.1\</IdfPyPath>
+    <MConfPath>$(IdfToolsPath)mconf\v4.6.0.0-idf-20190628\</MConfPath>
+    <NinjaPath>$(IdfToolsPath)ninja\1.9.0\</NinjaPath>
+    <PythonEnvPath>$(EspPath)python_env\idf4.1_py3.8_env\</PythonEnvPath>
+    <!-- Tools -->
+    <IdfPyExe>$(IdfToolsPath)idf-exe\1.0.1\idf.py.exe</IdfPyExe>
+    <!-- Compiler -->
+    <IdfInclude>@(IdfIncludeList)</IdfInclude>
+    <IncludePath>@(IdfIncludeList)</IncludePath>
+    <NMakeBuildCommandLine>msbuild.exe -t:EspFlash -p:Configuration="$(Configuration)" -p:SolutionDir="$(ProjectDir)..\\" -nologo -p:ComPort="COM3" -v:m $(ProjectFileName)</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>msbuild.exe -t:EspClean -p:Configuration="$(Configuration)" -p:SolutionDir="$(ProjectDir)..\\" -nologo -v:q $(ProjectFileName)</NMakeCleanCommandLine>
+    <NMakeForcedIncludes>$(SolutionDir)Esp\IntelliSense.h</NMakeForcedIncludes>
+    <NMakeIncludeSearchPath>$(SolutionDir)build\config</NMakeIncludeSearchPath>
+    <NMakePreprocessorDefinitions>@(PreprocessorList);$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+</Project>
