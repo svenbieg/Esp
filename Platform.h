@@ -36,3 +36,4 @@
 //========
 
 #include "Runtime/Application.h"
+#include "TaskClass.h"

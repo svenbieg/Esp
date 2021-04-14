@@ -38,8 +38,6 @@ namespace Web {
 NetworkParagraph::NetworkParagraph()
 {
 auto hcon=WiFiConnection::Current;
-hStationNetwork=new StringVariable("StationNetwork", hcon->StationNetwork);
-hStationPassword=new StringVariable("StationPassword", hcon->StationPassword);
 new Caption("Netzwerk", 2);
 Handle<Table> htable=new Table("simple");
 	new Row(); new Cell("static"); new TextBlock("Ip-Adresse"); new Cell("num"); new Label(hcon->StationIp);
@@ -51,9 +49,9 @@ this->Select();
 Handle<Button> hbtn;
 Handle<EditBox> hedit;
 htable=new Table("blank");
-	new Row(); new Cell("right"); new TextBlock("SSID"); new Cell(); hedit=new EditBox(hStationNetwork);
+	new Row(); new Cell("right"); new TextBlock("SSID"); new Cell(); hedit=new EditBox(hcon->StationNetwork);
 		hedit->Style="margin-left:4px; width:200px";
-	new Row(); new Cell("right"); new TextBlock("Passwort"); new Cell(); hedit=new EditBox(hStationPassword);
+	new Row(); new Cell("right"); new TextBlock("Passwort"); new Cell(); hedit=new EditBox(hcon->StationPassword);
 		hedit->InputType=EditBoxInputType::Password;
 		hedit->Style="margin-left:4px; margin-top:4px; width:200px";
 	new Row(); new Cell(); new Cell(); hbtn=new Button("NetworkConnect", "Verbinden");
@@ -69,10 +67,7 @@ Parent->Select();
 
 VOID NetworkParagraph::OnConnectClick(Handle<Button> hbtn)
 {
-auto hcon=WiFiConnection::Current;
-hcon->StationNetwork=hStationNetwork->Get();
-hcon->StationPassword=hStationPassword->Get();
-hcon->Connect();
+WiFiConnection::Current->Connect();
 }
 
 }}

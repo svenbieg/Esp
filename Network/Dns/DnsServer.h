@@ -34,8 +34,6 @@ class DnsServer: public Object
 public:
 	// Con-/Destructors
 	DnsServer();
-	~DnsServer();
-	Event<VOID, DnsServer*> Destroyed;
 
 	// Common
 	VOID Close();

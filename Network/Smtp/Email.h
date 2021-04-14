@@ -1,6 +1,6 @@
-//==============
-// SmtpClient.h
-//==============
+//=========
+// Email.h
+//=========
 
 #pragma once
 
@@ -9,7 +9,7 @@
 // Using
 //=======
 
-#include "Network/Smtp/Email.h"
+#include "Network/Smtp/SmtpServer.h"
 
 
 //===========
@@ -21,34 +21,24 @@ namespace Network {
 
 
 //========
-// Status
+// E-Mail
 //========
 
-enum class SmtpClientStatus
-{
-Closed,
-Closing,
-Sending
-};
-
-
-//=============
-// SMTP-Client
-//=============
-
-class SmtpClient: public Object
+class Email: public Object
 {
 public:
 	// Con-/Destructors
-	SmtpClient();
-	~SmtpClient();
+	Email(SmtpServer Server=SmtpServerOutlook);
 
 	// Common
-	VOID Close();
-	Event<SmtpClient> Aborted;
-	VOID Send(Handle<Email> Email);
+	Event<Email> Aborted;
+	Handle<String> From;
 	Handle<String> Password;
-	Event<SmtpClient> Sent;
+	VOID Send();
+	Event<Email> Sent;
+	Handle<String> Subject;
+	Handle<String> Text;
+	Handle<String> To;
 	Handle<String> User;
 
 private:
@@ -64,9 +54,10 @@ private:
 	SIZE_T SendAndReceiveSsl(VOID* SslContext, LPSTR Buffer, SIZE_T Size, SIZE_T BufferSize, INT* Status);
 	SIZE_T SendData(VOID* NetContext, LPCSTR Buffer, SIZE_T Size);
 	SIZE_T SendDataSsl(VOID* SslContext, LPCSTR Buffer, SIZE_T Size);
-	Handle<SmtpClient> hCallback;
-	Handle<Email> hEmail;
-	SmtpClientStatus uStatus;
+	Handle<Email> hCallback;
+	LPCSTR pCertificate;
+	LPCSTR pPort;
+	LPCSTR pServer;
 };
 
 }}

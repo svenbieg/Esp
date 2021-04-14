@@ -9,12 +9,17 @@
 // Using
 //=======
 
-#include "Procedure.h"
+#include "Handle.h"
+#include "TaskClass.h"
 
 
 //========
 // Common
 //========
 
-VOID CreateTask(Procedure Procedure, LPCSTR Name="", UINT StackSize=4096, UINT Priority=5);
-VOID Yield();
+template <class _owner_t, class... _args_t> Handle<Task> CreateTask(_owner_t* Owner, VOID (_owner_t::*Procedure)(), _args_t... Arguments)
+{
+auto task=new TaskTyped<_owner_t>(Owner, Procedure);
+task->Run(Arguments...);
+return task;
+}

@@ -35,11 +35,6 @@ DnsServer::DnsServer():
 uStatus(DnsServerStatus::Closed)
 {}
 
-DnsServer::~DnsServer()
-{
-Destroyed(this);
-}
-
 
 //========
 // Common

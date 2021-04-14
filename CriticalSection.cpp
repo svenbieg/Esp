@@ -21,7 +21,7 @@
 CriticalSection::CriticalSection():
 pSemaphore(nullptr)
 {
-pSemaphore=xSemaphoreCreateBinary();
+pSemaphore=(VOID*)xSemaphoreCreateBinary();
 ASSERT(pSemaphore);
 xSemaphoreGive(pSemaphore);
 }
@@ -29,7 +29,7 @@ xSemaphoreGive(pSemaphore);
 CriticalSection::~CriticalSection()
 {
 if(pSemaphore)
-	vSemaphoreDelete(pSemaphore);
+	vSemaphoreDelete((QueueHandle_t)pSemaphore);
 }
 
 
@@ -41,26 +41,26 @@ BOOL CriticalSection::IsLocked()const
 {
 if(!pSemaphore)
 	return false;
-return uxSemaphoreGetCount(pSemaphore)==0;
+return uxSemaphoreGetCount((QueueHandle_t)pSemaphore)==0;
 }
 
 VOID CriticalSection::Lock()
 {
-if(xSemaphoreTake(pSemaphore, portMAX_DELAY)==pdFALSE)
+if(xSemaphoreTake((QueueHandle_t)pSemaphore, portMAX_DELAY)==pdFALSE)
 	{
-	DebugPrint("CriticalSection::Lock() - DeadLock\n");
+	DebugPrint("CriticalSection::Lock() failed\n");
 	abort();
 	}
 }
 
 BOOL CriticalSection::TryLock()
 {
-if(xSemaphoreTake(pSemaphore, 0)==pdTRUE)
+if(xSemaphoreTake((QueueHandle_t)pSemaphore, 0)==pdTRUE)
 	return true;
 return false;
 }
 
 VOID CriticalSection::Unlock()
 {
-xSemaphoreGive(pSemaphore);
+xSemaphoreGive((QueueHandle_t)pSemaphore);
 }

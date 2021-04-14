@@ -12,6 +12,7 @@
 #include <esp_sleep.h>
 #include <esp_wifi.h>
 #include <nvs_flash.h>
+#include "Core/Console.h"
 #include "Devices/ClockHelper.h"
 #include "Network/WiFi/WiFiHelper.h"
 #include "Runtime/Application.h"
@@ -36,7 +37,8 @@ namespace Network {
 WiFiConnection::WiFiConnection():
 uStationGateway(0),
 uStationIp(0),
-uStationSubnet(0)
+uStationSubnet(0),
+uStatus(WiFiConnectionStatus::Disconnected)
 {
 Current=this;
 AccessPointIp=new IpAddress("WiFiAccessPointIp", 10, 0, 1, 1);
@@ -52,7 +54,7 @@ if(nvs_flash_init()!=ESP_OK)
 	return;
 	}
 WiFiInit();
-happ->Loop.AddProc(this, &WiFiConnection::Connect);
+happ->Dispatch(this, &WiFiConnection::Connect);
 }
 
 
@@ -70,24 +72,21 @@ hDnsServer=nullptr;
 
 VOID WiFiConnection::Connect()
 {
-esp_wifi_disconnect();
+DoDisconnect();
+if(!AccessPointNetwork&&!StationNetwork->Get())
+	return;
 wifi_mode_t mode=WIFI_MODE_NULL;
 if(AccessPointNetwork)
 	{
-	mode=StationNetwork? WIFI_MODE_APSTA: WIFI_MODE_AP;
+	mode=StationNetwork->Get()? WIFI_MODE_APSTA: WIFI_MODE_AP;
 	}
-else if(StationNetwork)
+else if(StationNetwork->Get())
 	{
 	mode=WIFI_MODE_STA;
 	}
 if(esp_wifi_set_mode(mode)!=ESP_OK)
 	{
 	DebugPrint("esp_wifi_set_mode() failed\n");
-	return;
-	}
-if(!AccessPointNetwork&&!StationNetwork)
-	{
-	Disconnect();
 	return;
 	}
 if(AccessPointNetwork!=hAccessPointNetwork)
@@ -107,7 +106,7 @@ if(AccessPointNetwork!=hAccessPointNetwork)
 		WiFiAccessPointClose();
 		}
 	}
-if(StationNetwork)
+if(StationNetwork->Get())
 	{
 	WiFiStationConfig(StationNetwork, StationPassword);
 	}
@@ -121,7 +120,7 @@ if(esp_wifi_start()!=ESP_OK)
 	return;
 	}
 #ifdef ESP32
-if(StationNetwork)
+if(StationNetwork->Get())
 	{
 	if(HostName)
 		WiFiStationSetHostName(HostName);
@@ -138,26 +137,17 @@ if(StationNetwork)
 		}
 	}
 #endif
+uStatus=WiFiConnectionStatus::Connecting;
 }
 
 Handle<WiFiConnection> WiFiConnection::Current;
 
 VOID WiFiConnection::Disconnect()
 {
-esp_wifi_disconnect();
-WiFiAccessPointClose();
-esp_wifi_stop();
-hAccessPointNetwork=nullptr;
-if(hDnsServer)
-	{
-	hDnsServer->Close();
-	hDnsServer=nullptr;
-	}
-if(hTimer)
-	{
-	hTimer->Stop();
-	hTimer=nullptr;
-	}
+if(uStatus==WiFiConnectionStatus::Offline)
+	return;
+uStatus=WiFiConnectionStatus::Offline;
+DoDisconnect();
 }
 
 VOID WiFiConnection::Notify(WiFiEvent event, WiFiEventArgs* pargs)
@@ -178,6 +168,7 @@ switch(event)
 		}
 	case WiFiEvent::StationConnected:
 		{
+		uStatus=WiFiConnectionStatus::Connected;
 		if(hTimer)
 			{
 			hTimer->Stop();
@@ -186,15 +177,18 @@ switch(event)
 		uStationGateway=pargs->Gateway;
 		uStationIp=pargs->Ip;
 		uStationSubnet=pargs->Subnet;
-		Application::Current->Loop.AddProc(this, &WiFiConnection::OnLoop);
+		Application::Current->Dispatch(this, &WiFiConnection::OnLoop);
 		break;
 		}
 	case WiFiEvent::StationDisconnected:
 		{
+		if(uStatus==WiFiConnectionStatus::Connecting)
+			ConsolePrint("WiFi connection failed (%u)\r\n", pargs? pargs->Ip: 0);
 		uStationGateway=0;
 		uStationIp=0;
 		uStationSubnet=0;
-		Application::Current->Loop.AddProc(this, &WiFiConnection::OnLoop);
+		uStatus=WiFiConnectionStatus::Disconnected;
+		Application::Current->Dispatch(this, &WiFiConnection::OnLoop);
 		break;
 		}
 	case WiFiEvent::StationStarted:
@@ -224,6 +218,24 @@ switch(event)
 // Common Private
 //================
 
+VOID WiFiConnection::DoDisconnect()
+{
+esp_wifi_disconnect();
+WiFiAccessPointClose();
+esp_wifi_stop();
+hAccessPointNetwork=nullptr;
+if(hDnsServer)
+	{
+	hDnsServer->Close();
+	hDnsServer=nullptr;
+	}
+if(hTimer)
+	{
+	hTimer->Stop();
+	hTimer=nullptr;
+	}
+}
+
 VOID WiFiConnection::OnLoop()
 {
 if(uStationIp!=0)
@@ -231,23 +243,22 @@ if(uStationIp!=0)
 	StationIp->Set(uStationIp);
 	StationGateway->Set(uStationGateway);
 	StationSubnet->Set(uStationSubnet);
-	DebugPrint("WiFi connected: %s\n", StationIp->ToString()->Begin());
+	ConsolePrint("WiFi connected: %s\r\n", StationIp->ToString()->Begin());
 	Connected(this);
 	ClockStartSync();
+	return;
 	}
-else
-	{
-	if(StationIp->Get()!=0)
-		{
-		DebugPrint("WiFi disconnected\n");
-		StationIp->Set(0);
-		StationGateway->Set(0);
-		StationSubnet->Set(0);
-		ClockStopSync();
-		Disconnected(this);
-		Connect();
-		}
-	}
+if(StationIp->Get()==0)
+	return;
+ConsolePrint("WiFi disconnected\r\n");
+StationIp->Set(0);
+StationGateway->Set(0);
+StationSubnet->Set(0);
+ClockStopSync();
+Disconnected(this);
+if(uStatus==WiFiConnectionStatus::Offline)
+	return;
+Connect();
 }
 
 VOID WiFiConnection::OnTimerTriggered(Handle<Timer> htimer)

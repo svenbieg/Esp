@@ -34,7 +34,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Network\Dns\DnsHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Network\Dns\DnsServer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Network\Ota\OtaUpdate.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Smtp\SmtpClient.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Smtp\Email.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Network\Tcp\PacketBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Network\Tcp\TcpClient.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Network\Tcp\TcpConnection.h" />
@@ -47,6 +47,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ResourceHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Runtime\Application.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Storage\AppDataHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TaskClass.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TaskHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TypeHelper.h" />
@@ -68,7 +69,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Network\Dns\DnsClient.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Network\Dns\DnsServer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Network\Ota\OtaUpdate.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Smtp\SmtpClient.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Smtp\Email.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Network\Tcp\PacketBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Network\Tcp\TcpClient.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Network\Tcp\TcpConnection.cpp" />
@@ -79,7 +80,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ResourceHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Runtime\Application.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Storage\AppDataHelper.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TaskHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TaskClass.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Web\Templates\NetworkParagraph.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Web\Templates\SystemParagraph.cpp" />

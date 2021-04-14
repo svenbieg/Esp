@@ -80,11 +80,11 @@ if(pip)
 if(uip)
 	{
 	uIp=uip;
-	Application::Current->Loop.AddProc(this, &DnsClient::OnServerFound);
+	Application::Current->Dispatch(this, &DnsClient::OnServerFound);
 	}
 else
 	{
-	Application::Current->Loop.AddProc(this, &DnsClient::OnServerNotFound);
+	Application::Current->Dispatch(this, &DnsClient::OnServerNotFound);
 	}
 }
 

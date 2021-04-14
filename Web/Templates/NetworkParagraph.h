@@ -38,8 +38,6 @@ public:
 private:
 	// Common
 	VOID OnConnectClick(Handle<Button> Button);
-	Handle<StringVariable> hStationNetwork;
-	Handle<StringVariable> hStationPassword;
 };
 
 }}

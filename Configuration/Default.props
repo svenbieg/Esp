@@ -5,13 +5,11 @@
     <!-- Directories -->
     <EspPath>$(HomePath).espressif\</EspPath>
     <IdfToolsPath>$(HomePath).espressif\tools\</IdfToolsPath>
-    <CMakePath>$(IdfToolsPath)cmake\3.13.4\</CMakePath>
+    <CMakePath>$(IdfToolsPath)cmake\3.16.4\</CMakePath>
     <IdfPyPath>$(IdfToolsPath)idf-exe\1.0.1\</IdfPyPath>
     <MConfPath>$(IdfToolsPath)mconf\v4.6.0.0-idf-20190628\</MConfPath>
-    <NinjaPath>$(IdfToolsPath)ninja\1.9.0\</NinjaPath>
-    <PythonEnvPath>$(EspPath)python_env\idf4.1_py3.8_env\</PythonEnvPath>
-    <!-- Tools -->
-    <IdfPyExe>$(IdfToolsPath)idf-exe\1.0.1\idf.py.exe</IdfPyExe>
+    <NinjaPath>$(IdfToolsPath)ninja\1.10.2\</NinjaPath>
+    <PythonEnvPath>$(EspPath)python_env\idf4.4_py3.8_env\</PythonEnvPath>
     <!-- Compiler -->
     <IdfInclude>@(IdfIncludeList)</IdfInclude>
     <IncludePath>@(IdfIncludeList)</IncludePath>

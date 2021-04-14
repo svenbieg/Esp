@@ -37,9 +37,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Network\WiFi\WiFiConnection.cpp">
       <Filter>Network\WiFi</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Smtp\SmtpClient.cpp">
-      <Filter>Network\Smtp</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CriticalSection.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Devices\Gpio\InputPin.cpp">
       <Filter>Devices\Gpio</Filter>
@@ -59,7 +56,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Devices\OneWireHelper.cpp">
       <Filter>Devices</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TaskHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Network\Udp\UdpClient.cpp">
       <Filter>Network\Udp</Filter>
     </ClCompile>
@@ -78,6 +74,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Devices\Storage\BlockDevice.cpp">
       <Filter>Devices\Storage</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Network\Smtp\Email.cpp">
+      <Filter>Network\Smtp</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TaskClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)MemoryHelper.h" />
@@ -124,9 +124,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Network\WiFi\WiFiEvent.h">
       <Filter>Network\WiFi</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Smtp\SmtpClient.h">
-      <Filter>Network\Smtp</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Network\Dns\DnsHelper.h">
       <Filter>Network\Dns</Filter>
     </ClInclude>
@@ -166,6 +163,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Runtime\Application.h">
       <Filter>Runtime</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Network\Smtp\Email.h">
+      <Filter>Network\Smtp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TaskClass.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Devices">
