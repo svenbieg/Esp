@@ -66,9 +66,10 @@ private:
 	// Common
 	static VOID DoTask(VOID* Param)
 		{
-		Handle<TaskTyped> task=(TaskTyped*)Param;
+		auto task=(TaskTyped*)Param;
 		task->cProcedure();
 		task->hThis=nullptr;
+		vTaskDelete(NULL);
 		}
 	std::function<VOID()> cProcedure;
 	Handle<_owner_t> hOwner;
