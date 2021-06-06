@@ -14,11 +14,13 @@
 #include <nvs_flash.h>
 #include "Core/Console.h"
 #include "Devices/ClockHelper.h"
+//#include "Network/Sntp/SntpHelper.h"
 #include "Network/WiFi/WiFiHelper.h"
 #include "Runtime/Application.h"
 #include "WiFiConnection.h"
 
 using namespace Devices;
+//using namespace Network::Sntp;
 using namespace Runtime;
 
 

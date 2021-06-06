@@ -28,6 +28,9 @@ namespace Devices {
 
 BOOL ClockGetTime(TIMEPOINT& tp, UINT udelta)
 {
+ZeroMemory(&tp, sizeof(TIMEPOINT));
+if(!ClockIsSet())
+	return false;
 time_t tnow;
 time(&tnow);
 tnow-=udelta;

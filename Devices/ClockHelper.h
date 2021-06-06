@@ -24,6 +24,7 @@ namespace Devices {
 //========
 
 BOOL ClockGetTime(Physics::TIMEPOINT& TimePoint, UINT Delta=0);
+BOOL ClockIsSet();
 VOID ClockStartSync();
 VOID ClockStopSync();
 
